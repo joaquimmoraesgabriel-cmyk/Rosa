@@ -77,7 +77,9 @@ rosa/
 │   ├── 50-ajuda.md           o comando \ajuda (manual completo)
 │   └── 60-seguranca.md       procedimento do \secops (ferramentas + triagem)
 ├── ferramentas/
-│   └── seguranca/scan.ps1    roda Semgrep + TruffleHog -> security-reports/
+│   └── seguranca/
+│       ├── scan.ps1          Semgrep + TruffleHog (+Nuclei) -> security-reports/
+│       └── strix.ps1         Strix (IA): pentest com 4 portoes de seguranca
 ├── adaptadores/README.md     onde cada IA le regras + como instalar
 ├── gerar.ps1                 gera o formato de cada IA em dist/
 ├── CHEATSHEET.md             referencia rapida (1 pagina)

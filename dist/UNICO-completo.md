@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: unico | Instalar em: colar em qualquer IA -->
-<!-- Gerado em: 2026-09-14 14:34 -->
+<!-- Gerado em: 2026-09-14 15:19 -->
 # 00 — NÚCLEO: Comandos de papel (LER SEMPRE, em toda conversa)
 
 Este arquivo faz parte do projeto **Rosa — Comandos de Papel**: um conjunto de
@@ -649,12 +649,15 @@ Referência de conteúdo: `10-planejamento.md` (PLAN), `20-execucao.md` (ACT),
 
 ## 1. Ferramentas (Docker — checar `docker info` ANTES)
 
-| Ferramenta | Para que serve | Imagem |
+| Ferramenta | Para que serve | Onde roda |
 |---|---|---|
-| Semgrep | Análise estática de código (padrões de bug e segurança) | `semgrep/semgrep:latest` |
-| TruffleHog | Segredos em arquivos **e** no histórico git | `trufflesecurity/trufflehog:latest` |
-| Nuclei | Varredura em alvo **autorizado** | `projectdiscovery/nuclei:latest` |
-| Strix | Investigação e validação contextual | `ghcr.io/usestrix/strix-sandbox:1.3.0` |
+| Semgrep | Análise estática de código (padrões de bug e segurança) | Docker `semgrep/semgrep:latest` |
+| TruffleHog | Segredos em arquivos **e** no histórico git | Docker `trufflesecurity/trufflehog:latest` |
+| Nuclei | Varredura em alvo **autorizado** | Docker `projectdiscovery/nuclei:latest` |
+| Strix | **Pentest autônomo com IA** (ataca de verdade e valida com PoC) | Binário local `strix` (não é Docker puro) |
+
+Semgrep, TruffleHog e Nuclei são **estáticos/baratos**. O Strix é **outra
+categoria** — veja a seção 3.b antes de pensar em rodá-lo.
 
 Se `docker info` não responder → eu **paro**, aviso e peço para abrir o
 Docker Desktop. Não finjo que rodei.
@@ -700,10 +703,53 @@ docker run --rm projectdiscovery/nuclei:latest -u <URL-AUTORIZADA> -severity hig
 Automatizado no Rosa:
 
 ```powershell
-.\ferramentas\seguranca\scan.ps1 -Alvo <PROJETO>
+.\ferramentas\seguranca\scan.ps1 -Alvo <PROJETO>     # Semgrep + TruffleHog (+ Nuclei)
+.\ferramentas\seguranca\strix.ps1 -Alvo <ALVO> -Autorizo   # Strix (leia a secao 7)
 ```
 
+---
+
+## 3.b. Strix — pentest autônomo com IA (cuidados especiais)
+
+O Strix é um **agente de IA** que ataca o alvo de verdade e valida com PoC.
+Ele **não** é um scanner comum. Três características mudam tudo:
+
+| Característica | Consequência |
+|---|---|
+| Precisa de **LLM** (`STRIX_LLM` + `LLM_API_KEY`) | sem modelo, não roda. A chave é **sua** e **nunca** passa pelo chat |
+| **Gasta dinheiro** (tokens) | sempre rodar com `--max-budget`. O teto é obrigatório na prática |
+| Monta a pasta do projeto **ESCREVÍVEL** no sandbox e **edita seus arquivos** | a doc oficial diz: *"commit or stash first"* |
+| Só pode rodar em alvo **autorizado** | teste sem autorização é **ilegal** na maioria das jurisdições |
+
+**Como o Rosa liga isso** (`ferramentas/seguranca/strix.ps1`) — 4 portões que
+**param** antes de qualquer coisa:
+
+1. `-Autorizo` (você confirma que tem autorização) → senão, para.
+2. `STRIX_LLM` + `LLM_API_KEY` no ambiente → senão, para e diz o que você faz.
+3. `strix` no PATH + `docker info` respondendo → senão, para.
+4. Alvo local com alterações **não commitadas** → para e pede `-AceitarEdicao`.
+
+Existe também `-Simular`: **mostra o comando e não executa nada, sem gastar nada.**
+
+**Exit codes do Strix (importante na hora de interpretar):**
+
+| Código | Significado |
+|---|---|
+| `0` | concluído **sem** vulnerabilidades (headless) |
+| `1` | erro fatal (ex.: faltando variável, Docker fora, config inválida) |
+| `2` | **vulnerabilidades encontradas** — **não** é erro, e **não** é confirmação humana |
+
+**Artefatos:** cada run grava `strix_runs/<run>/` com `vulnerabilities.json`,
+`vulnerabilities.csv`, `findings.sarif` (SARIF 2.1.0) e Markdown por achado.
+
+**Modos:** `quick` (minutos, bom para CI) · `standard` (30–60 min) ·
+`deep` (1–4 h, é o padrão do Strix — mas aqui o padrão é `quick`, por custo).
+
+> **Nunca** trato exit `2` como "vulnerabilidade confirmada". O PoC diz que o
+> agente achou; **eu** leio e trio antes de classificar.
+
 ## 4. Sub-modos do `\secops`
+
 
 | Você digita | O que eu faço |
 |---|---|
@@ -715,6 +761,7 @@ Automatizado no Rosa:
 | `\secops threat` | Threat modeling (STRIDE) |
 | `\secops incidente` | Runbook: contenção → erradicação → recuperação → lição |
 | `\secops relatorio` | Consolidar `security-reports/` num resumo |
+| `\secops strix <alvo>` | Pentest autônomo com IA — **exige sua autorização + chave LLM** (seção 3.b) |
 
 ## 5. Formato do relatório (`security-reports/RELATORIO.md`)
 

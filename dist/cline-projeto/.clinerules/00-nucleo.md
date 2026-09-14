@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-projeto | Instalar em: <projeto>/.clinerules/ -->
-<!-- Gerado em: 2026-09-14 14:34 -->
+<!-- Gerado em: 2026-09-14 15:19 -->
 # 00 — NÚCLEO: Comandos de papel (LER SEMPRE, em toda conversa)
 
 Este arquivo faz parte do projeto **Rosa — Comandos de Papel**: um conjunto de

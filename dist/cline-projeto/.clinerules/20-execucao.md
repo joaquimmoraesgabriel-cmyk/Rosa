@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-projeto | Instalar em: <projeto>/.clinerules/ -->
-<!-- Gerado em: 2026-09-14 14:34 -->
+<!-- Gerado em: 2026-09-14 15:19 -->
 # 20 — Comandos de EXECUÇÃO (codar de verdade)
 
 > Estes comandos **executam** (editam arquivos, rodam comandos). Se a mensagem

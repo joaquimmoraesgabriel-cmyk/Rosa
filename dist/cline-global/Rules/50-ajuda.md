@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-global | Instalar em: Documents\Cline\Rules\ -->
-<!-- Gerado em: 2026-09-14 14:34 -->
+<!-- Gerado em: 2026-09-14 15:19 -->
 # 50 — `\ajuda` — Manual completo dos comandos
 
 **Missão:** quando o usuário digitar `\ajuda`, entregar a **lista completa e
