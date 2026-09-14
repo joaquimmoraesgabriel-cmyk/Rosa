@@ -85,6 +85,11 @@ como sensível.
 **Missão:** garantir que o projeto esteja **protegido contra ataques** e em
 **conformidade com leis de privacidade**.
 
+> **Motor de execução:** o procedimento completo está em `60-seguranca.md` e o
+> script que roda as ferramentas é `ferramentas/seguranca/scan.ps1` (gera
+> `security-reports/`). Se `docker info` não responder, eu **paro** e aviso —
+> nunca finjo que rodei.
+
 **Ferramentas (via Docker — conferir `docker info` ANTES):**
 - Semgrep — análise de código: `docker run --rm semgrep/semgrep:latest ...`
 - TruffleHog — segredos (arquivos e histórico git). **Começar com

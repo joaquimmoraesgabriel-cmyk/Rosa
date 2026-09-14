@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-global | Instalar em: Documents\Cline\Rules\ -->
-<!-- Gerado em: 2026-09-14 12:50 -->
+<!-- Gerado em: 2026-09-14 14:34 -->
 # 50 — `\ajuda` — Manual completo dos comandos
 
 **Missão:** quando o usuário digitar `\ajuda`, entregar a **lista completa e
@@ -65,7 +65,21 @@ Para **cada** comando, imprimir exatamente estes campos:
 ```
 
 Referência de conteúdo: `10-planejamento.md` (PLAN), `20-execucao.md` (ACT),
-`30-geral-e-map.md` (`\geral` e `\map`), `40-limites.md` (limites reais).
+`30-geral-e-map.md` (`\geral` e `\map`), `40-limites.md` (limites reais),
+`60-seguranca.md` (procedimento do `\secops`).
+
+### 4.b. Sub-modos do `\secops` (vale no manual do comando)
+
+| Você digita | O que acontece |
+|---|---|
+| `\secops scan` | Semgrep + TruffleHog no projeto + relatório em `security-reports/` |
+| `\secops segredos` | Só TruffleHog (arquivos + histórico git) |
+| `\secops codigo` | Só Semgrep |
+| `\secops web <url>` | Nuclei — **só** em alvo seu/autorizado |
+| `\secops lgpd` | Revisão de LGPD/GDPR (mapa de requisitos) |
+| `\secops threat` | Threat modeling (STRIDE) |
+| `\secops incidente` | Runbook de incidente |
+| `\secops relatorio` | Consolidar `security-reports/` num resumo |
 
 ### 4. Como decidir qual usar (regra de bolso)
 

@@ -74,7 +74,10 @@ rosa/
 │   ├── 20-execucao.md        \front \back \devops \data \secops \qa
 │   ├── 30-geral-e-map.md     \geral (com aprovacao) + \map
 │   ├── 40-limites.md         o que a IA NAO consegue + o que VOCE faz
-│   └── 50-ajuda.md           o comando \ajuda (manual completo)
+│   ├── 50-ajuda.md           o comando \ajuda (manual completo)
+│   └── 60-seguranca.md       procedimento do \secops (ferramentas + triagem)
+├── ferramentas/
+│   └── seguranca/scan.ps1    roda Semgrep + TruffleHog -> security-reports/
 ├── adaptadores/README.md     onde cada IA le regras + como instalar
 ├── gerar.ps1                 gera o formato de cada IA em dist/
 ├── CHEATSHEET.md             referencia rapida (1 pagina)
@@ -109,11 +112,14 @@ Nada depois do comando? O agente pergunta o objetivo em vez de inventar.
 - [x] Gerador multi-ferramenta (`gerar.ps1`) validado
 - [x] Gerador multi-ferramenta (`gerar.ps1`) validado (com auto-validação)
 - [x] Adaptador Cursor: 6 regras `.mdc` + `USER-RULES.txt` (global)
+- [x] `\secops` com motor real: Semgrep + TruffleHog -> `security-reports/`
+- [x] Publicado no GitHub
 - [ ] Validar o adaptador Cursor **dentro** do Cursor (teste real)
 - [ ] Versão `EN` do catálogo
 - [ ] Comandos de papel extras: `\marketing`, `\legal`, `\suporte`
 - [ ] Instalador `instalar.ps1` (copia para o destino certo de cada IA)
-- [ ] Publicação no GitHub + página de instalação
+- [ ] `\qa` com execução real (rodar a suíte, não só escrever)
+- [ ] Ligar o Strix ao `\secops` (validação contextual)
 
 > Este projeto **não é** o conjunto de regras instalado globalmente na sua
 > máquina — aquele é uma *deploy* deste catálogo. Aqui fica a fonte.

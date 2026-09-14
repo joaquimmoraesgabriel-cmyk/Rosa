@@ -13,3 +13,6 @@ desktop.ini
 
 # Backups locais
 *.zip
+
+# Relatorios de seguranca (locais; o arquivo bruto pode conter valor de segredo)
+security-reports/

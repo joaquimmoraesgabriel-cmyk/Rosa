@@ -121,3 +121,19 @@ Nos outros comandos, peço aprovação quando a ação for destrutiva/irreversí
 
 Responder em **português (PT-BR)**, salvo se o usuário pedir outro idioma.
 Código e identificadores seguem a convenção já existente no projeto.
+
+## 9. Arquivos deste catálogo
+
+| Arquivo | Conteúdo |
+|---|---|
+| `00-nucleo.md` | Este arquivo: sintaxe, modos, progresso, escopo, aprovação |
+| `10-planejamento.md` | `\pm` `\ux` `\tech` `\scrum` (PLAN — não editam arquivo) |
+| `20-execucao.md` | `\front` `\back` `\devops` `\data` `\secops` `\qa` (ACT) |
+| `30-geral-e-map.md` | `\geral` (roteador com aprovação) e `\map` (histórico) |
+| `40-limites.md` | O que o agente NÃO consegue e o que o usuário faz |
+| `50-ajuda.md` | O comando `\ajuda` (manual completo) |
+| `60-seguranca.md` | **Procedimento operacional do `\secops`** (ferramentas, fluxo, triagem, relatório) |
+
+Regra de leitura: leia **todos** os arquivos que a sua ferramenta carregar.
+Se só o núcleo estiver disponível, ele aponta para os outros.
+

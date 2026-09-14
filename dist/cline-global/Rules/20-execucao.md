@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-global | Instalar em: Documents\Cline\Rules\ -->
-<!-- Gerado em: 2026-09-14 12:50 -->
+<!-- Gerado em: 2026-09-14 14:34 -->
 # 20 — Comandos de EXECUÇÃO (codar de verdade)
 
 > Estes comandos **executam** (editam arquivos, rodam comandos). Se a mensagem
@@ -88,6 +88,11 @@ como sensível.
 
 **Missão:** garantir que o projeto esteja **protegido contra ataques** e em
 **conformidade com leis de privacidade**.
+
+> **Motor de execução:** o procedimento completo está em `60-seguranca.md` e o
+> script que roda as ferramentas é `ferramentas/seguranca/scan.ps1` (gera
+> `security-reports/`). Se `docker info` não responder, eu **paro** e aviso —
+> nunca finjo que rodei.
 
 **Ferramentas (via Docker — conferir `docker info` ANTES):**
 - Semgrep — análise de código: `docker run --rm semgrep/semgrep:latest ...`

@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-projeto | Instalar em: <projeto>/.clinerules/ -->
-<!-- Gerado em: 2026-09-14 12:50 -->
+<!-- Gerado em: 2026-09-14 14:34 -->
 # 30 — `\geral` (roteador) e `\map` (cartógrafo)
 
 ---

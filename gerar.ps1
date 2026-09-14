@@ -90,6 +90,7 @@ $descricoes = @{
     '30-geral-e-map.md'  = 'Rosa - \geral (roteador com aprovacao) e \map (historico do projeto)'
     '40-limites.md'      = 'Rosa - limites da IA - o que ela nao consegue e o que o usuario deve fazer'
     '50-ajuda.md'        = 'Rosa - \ajuda - manual completo de todos os comandos'
+    '60-seguranca.md'    = 'Rosa - \secops - procedimento de seguranca (Semgrep, TruffleHog, Nuclei, Strix, LGPD)'
 }
 
 function LimparPasta([string]$Rel) {
