@@ -1,0 +1,15 @@
+# Saída gerada pelo gerar.ps1.
+# VERSIONADA de propósito: quem usa Cursor / Claude Code / Copilot / Gemini /
+# Windsurf (ou está no Mac/Linux) pode copiar o arquivo pronto sem rodar
+# PowerShell. Atualize com .\gerar.ps1 e faça o commit.
+
+# Ruído de sistema / editores
+*.tmp
+*.log
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Backups locais
+*.zip
