@@ -82,15 +82,50 @@ function Gerar-ArquivoUnico([string]$Adapter, [string]$CaminhoRel, [string]$Inst
 function Gerar-ClineProjeto { Gerar-MultiArquivo 'cline-projeto' 'cline-projeto/.clinerules' '<projeto>/.clinerules/' }
 function Gerar-ClineGlobal  { Gerar-MultiArquivo 'cline-global'  'cline-global/Rules'        'Documents\Cline\Rules\' }
 
+# Descricoes usadas no front-matter (description) das regras do Cursor.
+$descricoes = @{
+    '00-nucleo.md'       = 'Rosa - nucleo - sintaxe dos comandos, regras de modo, progresso e aprovacao'
+    '10-planejamento.md' = 'Rosa - comandos de PLANEJAMENTO (\pm \ux \tech \scrum) - nao editam arquivos'
+    '20-execucao.md'     = 'Rosa - comandos de EXECUCAO (\front \back \devops \data \secops \qa)'
+    '30-geral-e-map.md'  = 'Rosa - \geral (roteador com aprovacao) e \map (historico do projeto)'
+    '40-limites.md'      = 'Rosa - limites da IA - o que ela nao consegue e o que o usuario deve fazer'
+    '50-ajuda.md'        = 'Rosa - \ajuda - manual completo de todos os comandos'
+}
+
+function LimparPasta([string]$Rel) {
+    $alvo = Join-Path $Destino $Rel
+    if (Test-Path -LiteralPath $alvo) { Remove-Item -LiteralPath $alvo -Recurse -Force }
+}
+
+# Cursor: CADA regra e um arquivo .mdc em .cursor/rules/ e o front-matter TEM
+# que estar na linha 1 (o Cursor ignora arquivos .md dentro de .cursor/rules).
 function Gerar-Cursor {
-    $fm = (@(
-        '---',
-        'description: Rosa - Comandos de Papel (comandos \pm \ux \tech \scrum \front \back \devops \data \secops \qa \geral \map \ajuda)',
-        'alwaysApply: true',
-        '---',
+    foreach ($f in $fonte) {
+        $desc = if ($descricoes.ContainsKey($f.Name)) { $descricoes[$f.Name] } else { "Rosa - $($f.Name)" }
+        $fm = (@(
+            '---',
+            ("description: '" + $desc + "'"),
+            'alwaysApply: true',
+            '---',
+            ''
+        ) -join "`r`n")
+        $conteudo = $fm + (Cabecalho 'cursor' '<projeto>/.cursor/rules/rosa/') + $textoDe[$f.Name] + "`r`n"
+        Escrever (Join-Path $Destino ("cursor/.cursor/rules/rosa/" + $f.BaseName + '.mdc')) $conteudo
+    }
+
+    # O Cursor nao tem pasta global: o global chama-se "User Rules" (colar no app).
+    $cabUser = (@(
+        'ROSA - COMANDOS DE PAPEL --- User Rules do Cursor',
+        '',
+        'Cole TODO este texto em: Cursor > Settings / Customize > Rules > User Rules.',
+        'Assim os comandos valem em TODOS os seus projetos no Cursor.',
+        '',
+        'Fonte: https://github.com/joaquimmoraesgabriel-cmyk/Rosa',
+        ("Gerado em: " + (Get-Date -Format 'yyyy-MM-dd HH:mm')),
+        ('=' * 60),
         ''
     ) -join "`r`n")
-    Gerar-ArquivoUnico 'cursor' 'cursor/.cursor/rules/rosa-comandos.mdc' '<projeto>/.cursor/rules/' $fm -PrefixoPrimeiro
+    Escrever (Join-Path $Destino 'cursor/USER-RULES.txt') ($cabUser + $completo + "`r`n")
 }
 
 function Gerar-ClaudeCode { Gerar-ArquivoUnico 'claude-code' 'claude-code/CLAUDE.md' '<projeto>/CLAUDE.md' }
@@ -121,9 +156,58 @@ Write-Host ("Catalogo : {0} arquivo(s) em {1}" -f $fonte.Count, $Catalogo)
 Write-Host ("Destino  : {0}" -f $Destino)
 Write-Host ''
 
+$pastas = @{
+    'cline-projeto' = 'cline-projeto'
+    'cline-global'  = 'cline-global'
+    'cursor'        = 'cursor'
+    'claude-code'   = 'claude-code'
+    'copilot'       = 'copilot'
+    'gemini'        = 'gemini'
+    'windsurf'      = 'windsurf'
+    'agents'        = 'agents'
+}
+
 foreach ($k in $lista) {
     Write-Host ("[{0}]" -f $k) -ForegroundColor Yellow
+    if ($pastas.ContainsKey($k)) { LimparPasta $pastas[$k] }
+    if ($k -eq 'unico') {
+        $unico = Join-Path $Destino 'UNICO-completo.md'
+        if (Test-Path -LiteralPath $unico) { Remove-Item -LiteralPath $unico -Force }
+    }
     & $mapa[$k]
+}
+
+# ---------------- Auto-validacao da saida ----------------
+# Evita "gerou torto sem avisar": confere o front-matter das regras do Cursor.
+Write-Host ''
+Write-Host 'Validando a saida...' -ForegroundColor Cyan
+$falhas = 0
+
+$mdcs = @(Get-ChildItem -LiteralPath $Destino -Recurse -Filter '*.mdc' -File -ErrorAction SilentlyContinue)
+foreach ($m in $mdcs) {
+    $linhas = @(Get-Content -LiteralPath $m.FullName -TotalCount 5 -Encoding UTF8)
+    $bloco = $linhas -join "`n"
+    if ($linhas.Count -lt 3 -or $linhas[0] -ne '---' -or $bloco -notmatch 'alwaysApply') {
+        Write-Host ("  [FALHA] front-matter invalido (linha 1 deve ser ---): " + $m.Name) -ForegroundColor Red
+        $falhas++
+    }
+}
+Write-Host ("  {0} arquivo(s) .mdc conferido(s)." -f $mdcs.Count)
+
+# O Cursor IGNORA .md dentro de .cursor/rules/ -- nao gerar esse erro.
+$mdErrados = @(Get-ChildItem -LiteralPath $Destino -Recurse -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.Extension -eq '.md' -and $_.FullName -match '\.cursor[\\/]rules[\\/]' })
+if ($mdErrados.Count -gt 0) {
+    foreach ($m in $mdErrados) { Write-Host ("  [FALHA] .md dentro de .cursor/rules (o Cursor ignora): " + $m.Name) -ForegroundColor Red }
+    $falhas++
+}
+Write-Host ("  {0} arquivo(s) .md indevido(s) em .cursor/rules." -f $mdErrados.Count)
+
+if ($falhas -eq 0) {
+    Write-Host '  Validacao OK.' -ForegroundColor Green
+} else {
+    Write-Host ("  {0} problema(s) encontrado(s)." -f $falhas) -ForegroundColor Red
+    throw 'Validacao da saida falhou.'
 }
 
 Write-Host ''

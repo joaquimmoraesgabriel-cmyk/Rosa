@@ -61,5 +61,8 @@ Referência de **1 página**. Manual completo dentro da IA: digite `\ajuda`.
 Copy-Item .\dist\cline-global\Rules\* "$env:USERPROFILE\Documents\Cline\Rules\" -Force
 ```
 
-Outras IAs (Cursor, Claude Code, Copilot, Gemini, Windsurf, AGENTS.md):
+**Cursor (projeto):** copie `dist\cursor\.cursor` para a raiz do seu projeto.
+**Cursor (global):** cole `dist\cursor\USER-RULES.txt` em Settings → Rules → User Rules.
+
+Outras IAs (Claude Code, Copilot, Gemini, Windsurf, AGENTS.md):
 veja [`adaptadores/README.md`](adaptadores/README.md).

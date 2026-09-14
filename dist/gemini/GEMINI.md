@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: gemini | Instalar em: <projeto>/GEMINI.md -->
-<!-- Gerado em: 2026-09-14 12:42 -->
+<!-- Gerado em: 2026-09-14 12:50 -->
 # 00 — NÚCLEO: Comandos de papel (LER SEMPRE, em toda conversa)
 
 Este arquivo faz parte do projeto **Rosa — Comandos de Papel**: um conjunto de

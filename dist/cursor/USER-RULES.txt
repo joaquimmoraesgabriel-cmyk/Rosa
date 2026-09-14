@@ -1,11 +1,11 @@
----
-description: Rosa - Comandos de Papel (comandos \pm \ux \tech \scrum \front \back \devops \data \secops \qa \geral \map \ajuda)
-alwaysApply: true
----
-<!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
-<!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
-<!-- Adapter: cursor | Instalar em: <projeto>/.cursor/rules/ -->
-<!-- Gerado em: 2026-09-14 12:42 -->
+ROSA - COMANDOS DE PAPEL --- User Rules do Cursor
+
+Cole TODO este texto em: Cursor > Settings / Customize > Rules > User Rules.
+Assim os comandos valem em TODOS os seus projetos no Cursor.
+
+Fonte: https://github.com/joaquimmoraesgabriel-cmyk/Rosa
+Gerado em: 2026-09-14 12:50
+============================================================
 # 00 — NÚCLEO: Comandos de papel (LER SEMPRE, em toda conversa)
 
 Este arquivo faz parte do projeto **Rosa — Comandos de Papel**: um conjunto de

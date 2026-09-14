@@ -45,7 +45,7 @@ O catálogo é **agnóstico de ferramenta**; o `gerar.ps1` traduz para o formato
 | IA | Onde lê |
 |---|---|
 | Cline (projeto / global) | `.clinerules/` · `Documents\Cline\Rules\` |
-| Cursor | `.cursor/rules/*.mdc` |
+| Cursor | `.cursor/rules/rosa/*.mdc` · User Rules (global) |
 | Claude Code | `CLAUDE.md` |
 | GitHub Copilot | `.github/copilot-instructions.md` |
 | Gemini CLI | `GEMINI.md` |
@@ -107,7 +107,9 @@ Nada depois do comando? O agente pergunta o objetivo em vez de inventar.
 
 - [x] Catálogo com 13 comandos (PT-BR)
 - [x] Gerador multi-ferramenta (`gerar.ps1`) validado
-- [ ] Adaptador Cursor validado em uso real
+- [x] Gerador multi-ferramenta (`gerar.ps1`) validado (com auto-validação)
+- [x] Adaptador Cursor: 6 regras `.mdc` + `USER-RULES.txt` (global)
+- [ ] Validar o adaptador Cursor **dentro** do Cursor (teste real)
 - [ ] Versão `EN` do catálogo
 - [ ] Comandos de papel extras: `\marketing`, `\legal`, `\suporte`
 - [ ] Instalador `instalar.ps1` (copia para o destino certo de cada IA)

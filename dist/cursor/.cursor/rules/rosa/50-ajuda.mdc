@@ -1,6 +1,10 @@
+---
+description: 'Rosa - \ajuda - manual completo de todos os comandos'
+alwaysApply: true
+---
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
-<!-- Adapter: cline-projeto | Instalar em: <projeto>/.clinerules/ -->
+<!-- Adapter: cursor | Instalar em: <projeto>/.cursor/rules/rosa/ -->
 <!-- Gerado em: 2026-09-14 12:50 -->
 # 50 — `\ajuda` — Manual completo dos comandos
 
