@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-projeto | Instalar em: <projeto>/.clinerules/ -->
-<!-- Gerado em: 2026-09-14 15:19 -->
+<!-- Gerado em: 2026-09-15 14:25 -->
 # 40 — Limites reais: o que eu NÃO consigo e o que VOCÊ faz
 
 > Quando um comando pedir algo desta lista, eu **aviso na hora**, explico o

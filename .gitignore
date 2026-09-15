@@ -16,3 +16,6 @@ desktop.ini
 
 # Relatorios de seguranca (locais; o arquivo bruto pode conter valor de segredo)
 security-reports/
+
+# Saida do recon (superficie de alvo de terceiro: nunca versionar)
+recon-out/

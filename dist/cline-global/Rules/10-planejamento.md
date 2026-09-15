@@ -1,7 +1,7 @@
 <!-- GERADO AUTOMATICAMENTE por gerar.ps1 - NAO EDITE ESTE ARQUIVO. -->
 <!-- Projeto: Rosa - Comandos de Papel | Fonte: catalogo/*.md -->
 <!-- Adapter: cline-global | Instalar em: Documents\Cline\Rules\ -->
-<!-- Gerado em: 2026-09-14 15:19 -->
+<!-- Gerado em: 2026-09-15 14:25 -->
 # 10 — Comandos de PLANEJAMENTO (não editar arquivos)
 
 > Regra do núcleo vale aqui: estes quatro comandos rodam **sempre em plan

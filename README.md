@@ -75,11 +75,13 @@ rosa/
 │   ├── 30-geral-e-map.md     \geral (com aprovacao) + \map
 │   ├── 40-limites.md         o que a IA NAO consegue + o que VOCE faz
 │   ├── 50-ajuda.md           o comando \ajuda (manual completo)
-│   └── 60-seguranca.md       procedimento do \secops (ferramentas + triagem)
+│   ├── 60-seguranca.md       procedimento do \secops (ferramentas + triagem)
+│   └── 70-recon.md           procedimento do \recon (pipeline de bounty)
 ├── ferramentas/
-│   └── seguranca/
-│       ├── scan.ps1          Semgrep + TruffleHog (+Nuclei) -> security-reports/
-│       └── strix.ps1         Strix (IA): pentest com 4 portoes de seguranca
+│   ├── seguranca/
+│   │   ├── scan.ps1          Semgrep + TruffleHog (+Nuclei) -> security-reports/
+│   │   └── strix.ps1         Strix (IA): pentest com 4 portoes de seguranca
+│   └── recon/recon.ps1       recon de bounty: subfinder->dnsx->httpx->katana->nuclei
 ├── adaptadores/README.md     onde cada IA le regras + como instalar
 ├── gerar.ps1                 gera o formato de cada IA em dist/
 ├── CHEATSHEET.md             referencia rapida (1 pagina)
